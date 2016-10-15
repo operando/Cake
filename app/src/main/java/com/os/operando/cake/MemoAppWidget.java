@@ -19,9 +19,6 @@ public class MemoAppWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
     }
 
     @Override
@@ -32,8 +29,9 @@ public class MemoAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
     }
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String memo) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_memo);
+        views.setTextViewText(R.id.memo, memo);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }

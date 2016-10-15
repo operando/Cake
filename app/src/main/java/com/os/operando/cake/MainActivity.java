@@ -13,6 +13,7 @@ import com.os.operando.cake.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private MemoConfigurationViewModel viewModel;
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -38,12 +39,15 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+        viewModel = new MemoConfigurationViewModel();
+        binding.setViewModel(viewModel);
+
         binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MainActivity.this);
 
-                MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId);
+                MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId, viewModel.memo.get());
 
                 Intent i = new Intent();
                 i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
