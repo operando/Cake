@@ -10,10 +10,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.os.operando.cake.appwidget.MemoAppWidget;
-import com.os.operando.cake.viewmodel.MemoConfigurationViewModel;
 import com.os.operando.cake.R;
+import com.os.operando.cake.appwidget.MemoAppWidget;
 import com.os.operando.cake.databinding.ActivityMainBinding;
+import com.os.operando.cake.viewmodel.MemoConfigurationViewModel;
 import com.pavelsikun.vintagechroma.ChromaDialog;
 import com.pavelsikun.vintagechroma.OnColorSelectedListener;
 import com.pavelsikun.vintagechroma.colormode.ColorMode;
