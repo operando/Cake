@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.os.operando.cake.util.RemoteViewsUtil;
+
 public class MemoAppWidget extends AppWidgetProvider {
 
     private static final String TAG = MemoAppWidget.class.getSimpleName();
@@ -29,9 +31,10 @@ public class MemoAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
     }
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String memo) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String memo, int backgroundColor) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_memo);
         views.setTextViewText(R.id.memo, memo);
+        RemoteViewsUtil.setBackground(views, R.id.memo, backgroundColor);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }
