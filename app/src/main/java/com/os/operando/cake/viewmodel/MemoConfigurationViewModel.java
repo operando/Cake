@@ -1,4 +1,4 @@
-package com.os.operando.cake;
+package com.os.operando.cake.viewmodel;
 
 import android.databinding.ObservableField;
 
