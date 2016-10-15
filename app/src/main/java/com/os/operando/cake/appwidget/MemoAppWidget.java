@@ -1,4 +1,4 @@
-package com.os.operando.cake;
+package com.os.operando.cake.appwidget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.os.operando.cake.R;
 import com.os.operando.cake.util.RemoteViewsUtil;
 
 public class MemoAppWidget extends AppWidgetProvider {

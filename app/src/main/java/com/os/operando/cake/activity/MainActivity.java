@@ -10,7 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.os.operando.cake.MemoAppWidget;
+import com.os.operando.cake.appwidget.MemoAppWidget;
 import com.os.operando.cake.MemoConfigurationViewModel;
 import com.os.operando.cake.R;
 import com.os.operando.cake.databinding.ActivityMainBinding;

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MemoAppWidget">
+        <receiver android:name=".appwidget.MemoAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
