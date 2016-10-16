@@ -32,10 +32,12 @@ public class MemoAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
     }
 
-    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String memo, int backgroundColor) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId,
+                                       String memo, int backgroundColor, float textSize) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_memo);
         views.setTextViewText(R.id.memo, memo);
         RemoteViewsUtil.setBackground(views, R.id.memo, backgroundColor);
+        RemoteViewsUtil.setTextSize(views, R.id.memo, textSize);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 }
