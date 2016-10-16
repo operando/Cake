@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             new ChromaDialog.Builder()
-                    .initialColor(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color))
+                    .initialColor(viewModel.backgroundColor.get())
                     .colorMode(ColorMode.ARGB)
                     .onColorSelected(new OnColorSelectedListener() {
                         @Override
