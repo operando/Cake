@@ -48,7 +48,8 @@
             android:id="@+id/textSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="32" />
+            android:max="32"
+            android:onProgressChanged="@{(seekBar, progress, fromUser) -> viewModel.onTextSizeChanged(progress)}" />
 
         <Button
             android:id="@+id/ok"

@@ -9,7 +9,6 @@ import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.SeekBar;
 
 import com.os.operando.cake.R;
 import com.os.operando.cake.appwidget.MemoAppWidget;
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     private int backgroundColor;
-    private float textSize;
-    private float minTextSize;
 
     public static Intent createIntent(Context context) {
         Intent i = new Intent(context, MainActivity.class);
@@ -53,12 +50,10 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        viewModel = new MemoConfigurationViewModel();
+        viewModel = new MemoConfigurationViewModel(getResources().getInteger(R.integer.min_text_size));
         binding.setViewModel(viewModel);
 
         backgroundColor = ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color);
-        textSize = getResources().getInteger(R.integer.default_text_size);
-        minTextSize = getResources().getInteger(R.integer.min_text_size);
 
         binding.selectBackgroundColor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,28 +78,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MainActivity.this);
 
-                MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId, viewModel.memo.get(), backgroundColor, textSize);
+                MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId,
+                        viewModel.memo.get(), backgroundColor, viewModel.textSize.get());
 
                 Intent i = new Intent();
                 i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 setResult(RESULT_OK, i);
 
                 finish();
-            }
-        });
-
-        binding.textSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textSize = minTextSize + progress;
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
     }
