@@ -1,11 +1,8 @@
 package com.os.operando.cake.viewmodel;
 
-import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.databinding.ObservableFloat;
 import android.databinding.ObservableInt;
-import android.util.TypedValue;
-import android.widget.TextView;
 
 public class MemoConfigurationViewModel {
 
@@ -23,10 +20,5 @@ public class MemoConfigurationViewModel {
 
     public void onTextSizeChanged(int progress) {
         textSize.set(minTextSize + progress);
-    }
-
-    @BindingAdapter("memoTextSize")
-    public static void setMemoTextSize(TextView textView, float textSize) {
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     }
 }
