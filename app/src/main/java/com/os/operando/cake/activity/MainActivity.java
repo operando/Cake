@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
-    private int backgroundColor;
-
     public static Intent createIntent(Context context) {
         Intent i = new Intent(context, MainActivity.class);
         return i;
@@ -51,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         viewModel = new MemoConfigurationViewModel(getResources().getInteger(R.integer.min_text_size));
+        viewModel.backgroundColor.set(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color));
         binding.setViewModel(viewModel);
-
-        backgroundColor = ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color);
 
         binding.selectBackgroundColor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         .onColorSelected(new OnColorSelectedListener() {
                             @Override
                             public void onColorSelected(@ColorInt int color) {
-                                backgroundColor = color;
-                                binding.backgroundColor.setBackgroundColor(backgroundColor);
+                                viewModel.backgroundColor.set(color);
                             }
                         })
                         .create()
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MainActivity.this);
 
                 MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId,
-                        viewModel.memo.get(), backgroundColor, viewModel.textSize.get());
+                        viewModel.memo.get(), viewModel.backgroundColor.get(), viewModel.textSize.get());
 
                 Intent i = new Intent();
                 i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);

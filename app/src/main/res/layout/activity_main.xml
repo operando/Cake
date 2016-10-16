@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -36,7 +37,7 @@
             android:id="@+id/background_color"
             android:layout_width="82dp"
             android:layout_height="82dp"
-            android:background="@color/default_memo_background_color" />
+            android:background="@{viewModel.backgroundColor}" />
 
         <Button
             android:id="@+id/select_background_color"
@@ -50,6 +51,14 @@
             android:layout_height="wrap_content"
             android:max="32"
             android:onProgressChanged="@{(seekBar, progress, fromUser) -> viewModel.onTextSizeChanged(progress)}" />
+
+        <TextView
+            android:id="@+id/preview_memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@{viewModel.backgroundColor}"
+            android:text="@={viewModel.memo}"
+            app:memoTextSize="@{viewModel.textSize}" />
 
         <Button
             android:id="@+id/ok"
