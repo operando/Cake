@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             appWidgetId = bundle.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -50,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new MemoConfigurationViewModel(getResources().getInteger(R.integer.min_text_size));
         viewModel.backgroundColor.set(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color));
+        viewModel.textColor.set(ContextCompat.getColor(this, R.color.default_memo_text_color));
         binding.setViewModel(viewModel);
 
         binding.backgroundColor.setOnClickListener(onBackgroundColorChangeClickListener);
-
         binding.selectBackgroundColor.setOnClickListener(onBackgroundColorChangeClickListener);
+
+        binding.textColor.setOnClickListener(onTextColorChangeClickListener);
+        binding.selectTextColor.setOnClickListener(onTextColorChangeClickListener);
 
         binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MainActivity.this);
 
                 MemoAppWidget.updateAppWidget(MainActivity.this, appWidgetManager, appWidgetId,
-                        viewModel.memo.get(), viewModel.backgroundColor.get(), viewModel.textSize.get());
+                        viewModel.memo.get(), viewModel.backgroundColor.get(), viewModel.textSize.get(), viewModel.textColor.get());
 
                 Intent i = new Intent();
                 i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
@@ -84,6 +86,24 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onColorSelected(@ColorInt int color) {
                             viewModel.backgroundColor.set(color);
+                        }
+                    })
+                    .create()
+                    .show(getSupportFragmentManager(), ChromaDialog.class.getName());
+        }
+    };
+
+    private View.OnClickListener onTextColorChangeClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            new ChromaDialog.Builder()
+                    .initialColor(viewModel.textColor.get())
+                    .colorMode(ColorMode.ARGB)
+                    .onColorSelected(new OnColorSelectedListener() {
+                        @Override
+                        public void onColorSelected(@ColorInt int color) {
+                            viewModel.textColor.set(color);
                         }
                     })
                     .create()

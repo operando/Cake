@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="default_memo_background_color">#89d893</color>
+    <color name="default_memo_text_color">#FFFFFF</color>
 </resources>

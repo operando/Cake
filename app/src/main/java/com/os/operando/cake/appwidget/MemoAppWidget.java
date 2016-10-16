@@ -33,9 +33,10 @@ public class MemoAppWidget extends AppWidgetProvider {
     }
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId,
-                                       String memo, int backgroundColor, float textSize) {
+                                       String memo, int backgroundColor, float textSize, int textColor) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_memo);
         views.setTextViewText(R.id.memo, memo);
+        views.setTextColor(R.id.memo, textColor);
         RemoteViewsUtil.setBackground(views, R.id.memo, backgroundColor);
         RemoteViewsUtil.setTextSize(views, R.id.memo, textSize);
         appWidgetManager.updateAppWidget(appWidgetId, views);

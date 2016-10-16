@@ -11,6 +11,7 @@ public class MemoConfigurationViewModel {
 
     public final ObservableField<String> memo = new ObservableField<>();
     public final ObservableFloat textSize = new ObservableFloat();
+    public final ObservableInt textColor = new ObservableInt();
     public final ObservableInt backgroundColor = new ObservableInt();
 
     private final float minTextSize;
