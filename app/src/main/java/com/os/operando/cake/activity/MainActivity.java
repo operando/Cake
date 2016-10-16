@@ -52,22 +52,9 @@ public class MainActivity extends AppCompatActivity {
         viewModel.backgroundColor.set(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color));
         binding.setViewModel(viewModel);
 
-        binding.selectBackgroundColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new ChromaDialog.Builder()
-                        .initialColor(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color))
-                        .colorMode(ColorMode.ARGB)
-                        .onColorSelected(new OnColorSelectedListener() {
-                            @Override
-                            public void onColorSelected(@ColorInt int color) {
-                                viewModel.backgroundColor.set(color);
-                            }
-                        })
-                        .create()
-                        .show(getSupportFragmentManager(), ChromaDialog.class.getName());
-            }
-        });
+        binding.backgroundColor.setOnClickListener(onBackgroundColorChangeClickListener);
+
+        binding.selectBackgroundColor.setOnClickListener(onBackgroundColorChangeClickListener);
 
         binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,4 +72,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private View.OnClickListener onBackgroundColorChangeClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            new ChromaDialog.Builder()
+                    .initialColor(ContextCompat.getColor(MainActivity.this, R.color.default_memo_background_color))
+                    .colorMode(ColorMode.ARGB)
+                    .onColorSelected(new OnColorSelectedListener() {
+                        @Override
+                        public void onColorSelected(@ColorInt int color) {
+                            viewModel.backgroundColor.set(color);
+                        }
+                    })
+                    .create()
+                    .show(getSupportFragmentManager(), ChromaDialog.class.getName());
+        }
+    };
 }
