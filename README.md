@@ -1,0 +1,1 @@
+# Cake [![Build Status](https://travis-ci.org/operando/Cake.svg?branch=master)](https://travis-ci.org/operando/Cake)
