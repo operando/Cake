@@ -30,7 +30,8 @@
                 android:id="@+id/memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.memo}" />
+                android:text="@={viewModel.memo}"
+                android:textSize="20sp" />
         </android.support.design.widget.TextInputLayout>
 
         <View
