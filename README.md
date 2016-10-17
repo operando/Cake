@@ -2,4 +2,4 @@
 
 ## Insatall(DeployGate)
 
-[<img src="https://dply.me/srtp3z/button/large" alt="Try it on your device via DeployGate">](https://dply.me/srtp3z#install)
+[<img src="https://dply.me/q63rqh/button/large" alt="Try it on your device via DeployGate">](https://dply.me/q63rqh#install)
