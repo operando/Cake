@@ -63,18 +63,17 @@ public class MemoConfigurationDetailActivity extends AppCompatActivity {
         binding.ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MemoConfigurationDetailActivity.this);
-
-                MemoAppWidget.updateAppWidget(MemoConfigurationDetailActivity.this, appWidgetManager, appWidgetId,
-                        viewModel.memo.get(), viewModel.backgroundColor.get(), viewModel.textSize.get(), viewModel.textColor.get());
-
                 Memo memo = new Memo();
                 memo.nemo = viewModel.memo.get();
                 memo.backgroundColor = viewModel.backgroundColor.get();
                 memo.textSize = viewModel.textSize.get();
                 memo.textColor = viewModel.textColor.get();
 
-                CakeApplication.getOrma().insertIntoMemo(memo);
+                long id = CakeApplication.getOrma().insertIntoMemo(memo);
+
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MemoConfigurationDetailActivity.this);
+                MemoAppWidget.updateAppWidget(MemoConfigurationDetailActivity.this, appWidgetManager, appWidgetId,
+                        viewModel.memo.get(), viewModel.backgroundColor.get(), viewModel.textSize.get(), viewModel.textColor.get(), id);
 
                 Intent i = new Intent();
                 i.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
